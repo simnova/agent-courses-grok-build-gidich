@@ -157,6 +157,14 @@
 		{
 			"includes": ["**/*.config.*", "**/rolldown.config.ts", "portless.config.cjs", "**/cucumber.js"],
 			"linter": { "rules": { "style": { "noCommonJs": "off" } } }
+		},
+		{
+			"includes": ["**/axc-verification/**", "**/*.test.ts", "**/archunit-tests/**"],
+			"linter": {
+				"rules": {
+					"suspicious": { "noExplicitAny": "off" }
+				}
+			}
 		}
 	],
 	"assist": {

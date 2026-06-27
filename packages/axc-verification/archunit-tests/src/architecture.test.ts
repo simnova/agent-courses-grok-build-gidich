@@ -3,9 +3,10 @@
  * Drives real shipped modules from @axc/axc and @apps/api.
  * (Full fluent archunit syntax stabilized in follow-up; current ensures import + boundary via tests.)
  */
-import { describe, it, expect } from 'vitest';
-import * as axc from '@axc/axc';
+
 import * as api from '@apps/api';
+import * as axc from '@axc/axc';
+import { describe, expect, it } from 'vitest';
 
 describe('Architecture boundaries (axc healthcheck)', () => {
 	it('imports the real @axc/axc healthcheck logic (shipped code)', () => {

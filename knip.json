@@ -29,7 +29,7 @@
 		"packages/axc-verification/acceptance-api": {
 			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/index.ts"],
 			"project": ["src/**/*.ts"],
-			"ignoreBinaries": ["report"]
+			"ignoreBinaries": []
 		},
 		"packages/cellix/*": {
 			"project": ["src/**/*.ts"]
@@ -54,5 +54,5 @@
 		"@serenity-js/*",
 		"@cucumber/*"
 	],
-	"ignoreBinaries": ["func", "snyk", "portless", "npx"]
+	"ignoreBinaries": ["func", "snyk"]
 }

@@ -38,16 +38,14 @@ catalog:
 
   # Azure compat note: host.json etc for azure functions v4
   '@azure/functions': ^4.11.0
-# Example if ever needed (DO NOT uncomment unless justified):
-# allowBuilds:
-#   'some-native-dep': true   # reason: ...
-
 # Audit ignores if any unavoidable (documented); start empty
 auditConfig:
   ignoreGhsas: []
-allowBuilds:
-  core-js: set this to true or false
-  core-js-pure: set this to true or false
+allowBuilds: {}
+onlyBuiltDependencies: []
+# Strict supply-chain: zero approved build scripts (onlyBuiltDependencies + allowBuilds empty).
+# Installs use --ignore-scripts where possible. Document+justify exceptions.
+# See https://pnpm.io/settings and pnpm approve-builds. Default expectation: zero.
 
 # Use workspace:* and catalog: for all inter-package / versioned deps.
 # pnpm version locked in root package.json packageManager field.
