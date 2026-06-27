@@ -1,0 +1,22 @@
+{
+	"name": "@axc/domain",
+	"version": "0.1.0",
+	"private": false,
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.js",
+	"scripts": {
+		"build": "tsc --build",
+		"test": "vitest run",
+		"test:unit": "vitest run",
+		"clean": "rimraf dist",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format ."
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

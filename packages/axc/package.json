@@ -1,0 +1,30 @@
+{
+	"name": "@axc/axc",
+	"version": "0.1.0",
+	"private": false,
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.js",
+	"exports": {
+		".": "./dist/index.js",
+		"./rest": "./dist/rest/index.js",
+		"./rest/healthcheck": "./dist/rest/healthcheck.js",
+		"./domain/*": "./dist/domain/*.js"
+	},
+	"scripts": {
+		"build": "tsc --build",
+		"test": "vitest run",
+		"clean": "rimraf dist",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format ."
+	},
+	"dependencies": {
+		"hono": "catalog:"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"name": "@axc-verification/acceptance-api",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "tsc --build || echo 'serenity may use ts directly'",
+		"test:acceptance": "cucumber-js",
+		"test": "cucumber-js",
+		"clean": "rimraf target reports dist",
+		"lint": "biome lint || echo 'lint may need src'",
+		"format": "biome format --write || true",
+		"format:check": "biome format . || true"
+	},
+	"dependencies": {
+		"@axc/axc": "workspace:*",
+		"@apps/api": "workspace:*",
+		"@cucumber/cucumber": "catalog:",
+		"@serenity-js/assertions": "catalog:",
+		"@serenity-js/console-reporter": "catalog:",
+		"@serenity-js/core": "catalog:",
+		"@serenity-js/cucumber": "catalog:",
+		"@serenity-js/serenity-bdd": "catalog:",
+		"hono": "catalog:"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"rimraf": "^6.0.1",
+		"typescript": "catalog:",
+		"tsx": "catalog:"
+	}
+}

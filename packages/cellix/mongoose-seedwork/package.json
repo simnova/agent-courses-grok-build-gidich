@@ -1,0 +1,22 @@
+{
+	"name": "@cellix/mongoose-seedwork",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Minimal mongoose seedwork reimplemented for axc (inspired by cellix patterns; not full port). Provides base entity/aggregate stubs.",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc --build || echo 'no src yet'",
+		"clean": "rimraf dist",
+		"lint": "echo 'seedwork lint skipped'",
+		"format": "echo 'seedwork format skipped'",
+		"format:check": "echo 'seedwork format:check skipped'"
+	},
+	"peerDependencies": {
+		"mongoose": "catalog:"
+	},
+	"devDependencies": {
+		"typescript": "catalog:",
+		"@types/node": "catalog:"
+	}
+}

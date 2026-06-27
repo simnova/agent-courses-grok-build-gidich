@@ -1,0 +1,58 @@
+{
+	"name": "agentcourses",
+	"version": "0.1.0",
+	"description": "agentCourses exists to quantify how harness engineering, agentic coding harnesses, and model selection affect software quality and delivery efficiency. A dark software factory scaffold where coding agents build in isolated worktrees with exhaustive automated quality, architecture, security, and BDD gates.",
+	"type": "module",
+	"author": "agentCourses",
+	"license": "MIT",
+	"packageManager": "pnpm@11.9.0",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"build": "turbo run build",
+		"build:affected": "turbo run build --affected",
+		"dev": "pnpm proxy:stop && pnpm proxy:start && turbo watch dev --filter='./apps/*' --filter='./packages/*'",
+		"dev:worktree": "WORKTREE_NAME=$(basename $PWD) pnpm proxy:ensure && WORKTREE_NAME=$(basename $PWD) turbo watch dev:worktree --filter='./apps/*' --filter='./packages/*'",
+		"start": "turbo run build && pnpm --filter @apps/api start",
+		"proxy:stop": "pnpm exec portless proxy stop || true",
+		"proxy:start": "pnpm exec portless proxy start --https -p 1355 || true",
+		"proxy:ensure": "pnpm exec portless proxy start --https -p 1355 || true",
+		"format": "turbo run format",
+		"format:check": "turbo run format:check",
+		"format:staged": "biome check --write --staged --no-errors-on-unmatched",
+		"lint": "turbo run lint",
+		"clean": "turbo run clean && rimraf dist node_modules **/coverage .turbo",
+		"test": "turbo run test",
+		"test:arch": "turbo run test:arch",
+		"test:acceptance": "turbo run test:acceptance",
+		"test:unit": "turbo run test:unit",
+		"knip": "knip",
+		"analyze": "pnpm dlx @e18e/cli analyze",
+		"audit": "pnpm audit --audit-level=high --prod || pnpm audit --audit-level=critical --dev",
+		"snyk": "pnpm run snyk:test",
+		"snyk:test": "snyk test --all-projects --policy-path=.snyk --exclude=dist,build,.turbo,coverage,.agents-work,.agents,.github || true",
+		"verify": "pnpm run format:check && pnpm run analyze && pnpm run lint && pnpm run build && pnpm run test:arch && pnpm run test:acceptance && pnpm run knip && pnpm run audit && pnpm run snyk",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"**/*.{js,ts,cjs,mjs,jsx,tsx,json,css,md}": [
+			"biome check --write --no-errors-on-unmatched"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@types/node": "catalog:",
+		"@vitest/coverage-istanbul": "catalog:",
+		"husky": "catalog:",
+		"knip": "catalog:",
+		"lint-staged": "catalog:",
+		"portless": "0.11.1",
+		"rimraf": "^6.1.3",
+		"rolldown": "catalog:",
+		"snyk": "^1.1300.2",
+		"turbo": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

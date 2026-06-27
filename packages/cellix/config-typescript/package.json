@@ -1,0 +1,15 @@
+{
+	"name": "@cellix/config-typescript",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Reimplemented TypeScript config patterns (inspired by cellixjs, modernized for Node 24 + no graphql). Extension point.",
+	"main": "tsconfig.base.json",
+	"files": ["tsconfig.base.json"],
+	"scripts": {
+		"build": "echo 'config package - no build'",
+		"lint": "echo 'config lint skipped'",
+		"format": "echo 'config format skipped'",
+		"format:check": "echo 'config format:check skipped'"
+	}
+}

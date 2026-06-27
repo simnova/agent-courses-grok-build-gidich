@@ -1,0 +1,104 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"globalPassThroughEnv": ["WORKTREE_NAME", "NODE_ENV"],
+	"globalEnv": ["PORT", "MONGODB_URI"],
+	"futureFlags": {
+		"affectedUsingTaskInputs": true,
+		"watchUsingTaskInputs": true
+	},
+	"tasks": {
+		"build": {
+			"description": "Compiles TypeScript and bundles each package with rolldown",
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**/*.ts",
+				"src/**/*.tsx",
+				"src/**/*.mts",
+				"src/**/*.cts",
+				"src/**/*.js",
+				"src/**/*.json",
+				"tsconfig*.json",
+				"rolldown.config.ts",
+				"!coverage/**",
+				"!target/**",
+				"!tests/**",
+				"!**/*.test.*",
+				"!**/*.spec.*",
+				"!vitest*.config.*",
+				"!**/__tests__/**"
+			],
+			"outputs": ["dist/**", "build/**", "*.tsbuildinfo"]
+		},
+		"test": {
+			"description": "Runs the default test suite for each package",
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "**/*.test.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"]
+		},
+		"test:arch": {
+			"description": "Runs architecture unit tests (archunit) for packages that define them",
+			"dependsOn": ["build", "^build"],
+			"inputs": ["$TURBO_DEFAULT$", "src/archunit-tests/**/*.test.ts", "src/**/*.arch.test.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"]
+		},
+		"test:acceptance": {
+			"description": "Runs Serenity BDD / Cucumber acceptance tests",
+			"dependsOn": ["build", "^build"],
+			"inputs": ["$TURBO_DEFAULT$", "**/*.feature", "src/**/*.steps.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"],
+			"outputs": ["target/**", "reports/**"],
+			"cache": false
+		},
+		"test:unit": {
+			"description": "Runs unit tests for each package",
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "**/*.test.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"],
+			"outputs": ["coverage/**"]
+		},
+		"dev": {
+			"description": "Starts application dev servers in watch mode (local, uses portless)",
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
+		"dev:worktree": {
+			"description": "Starts dev servers with WORKTREE_NAME-scoped portless hostnames for git worktree / multi-agent isolation",
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
+		"start": {
+			"description": "Starts long-running package start scripts",
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"description": "Runs the Biome linter",
+			"inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/biome.json", "!coverage/**", "!target/**", "!dist/**", "!build/**"],
+			"outputs": []
+		},
+		"format": {
+			"description": "Formats source files with Biome",
+			"outputs": []
+		},
+		"format:check": {
+			"description": "Checks source formatting with Biome without writing changes",
+			"outputs": []
+		},
+		"clean": {
+			"description": "Removes generated build artifacts and caches",
+			"cache": false,
+			"outputs": []
+		},
+		"//#knip": {
+			"description": "Runs knip unused code/dependency analysis at root",
+			"cache": false
+		},
+		"//#analyze": {
+			"description": "Runs e18e static analysis for agentic quality gates",
+			"cache": false
+		},
+		"//#audit": {
+			"description": "Runs pnpm audit (part of verify)",
+			"cache": false
+		}
+	}
+}

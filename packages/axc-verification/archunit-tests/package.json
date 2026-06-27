@@ -1,0 +1,23 @@
+{
+	"name": "@axc-verification/archunit-tests",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "tsc --build",
+		"test:arch": "vitest run",
+		"test": "vitest run",
+		"clean": "rimraf dist",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format ."
+	},
+	"devDependencies": {
+		"@axc/axc": "workspace:*",
+		"@apps/api": "workspace:*",
+		"@types/node": "catalog:",
+		"archunit": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

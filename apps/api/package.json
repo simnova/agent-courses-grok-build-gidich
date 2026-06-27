@@ -1,0 +1,39 @@
+{
+	"name": "@apps/api",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc --build && rolldown -c rolldown.config.ts",
+		"dev": "pnpm exec portless api.axc.localhost --force tsx watch src/index.ts",
+		"dev:worktree": "WORKTREE_NAME=${WORKTREE_NAME:-worktree} pnpm exec portless api.axc.${WORKTREE_NAME}.localhost --force tsx watch src/index.ts",
+		"start": "node --import tsx src/index.ts",
+		"test": "vitest run",
+		"test:arch": "vitest run --config vitest.arch.config.ts",
+		"test:unit": "vitest run",
+		"clean": "rimraf dist deploy",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format ."
+	},
+	"dependencies": {
+		"@axc/axc": "workspace:*",
+		"@axc/domain": "workspace:*",
+		"@azure/functions": "catalog:",
+		"@marplex/hono-azurefunc-adapter": "catalog:",
+		"hono": "catalog:",
+		"mongoose": "catalog:"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"@vitest/coverage-istanbul": "catalog:",
+		"archunit": "catalog:",
+		"mongodb-memory-server-core": "catalog:",
+		"rimraf": "^6.0.1",
+		"rolldown": "catalog:",
+		"tsx": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

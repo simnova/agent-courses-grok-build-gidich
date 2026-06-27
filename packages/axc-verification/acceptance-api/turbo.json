@@ -1,0 +1,6 @@
+{
+	"extends": ["//"],
+	"tasks": {
+		"test:acceptance": { "outputs": ["target/**", "reports/**"], "cache": false }
+	}
+}

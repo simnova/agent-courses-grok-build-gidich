@@ -1,0 +1,58 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"workspaces": {
+		".": {
+			"entry": ["turbo.json", "biome.json"],
+			"project": ["*.ts", "*.js", "scripts/**/*.ts"]
+		},
+		"apps/api": {
+			"entry": ["src/index.ts", "src/**/*.ts", "rolldown.config.ts"],
+			"project": ["src/**/*.ts", "*.mjs", "host.json"],
+			"ignoreDependencies": []
+		},
+		"apps/docs": {
+			"entry": ["**/*.{ts,tsx,js,jsx}"],
+			"project": ["**/*.{ts,tsx,js,jsx}"]
+		},
+		"packages/axc": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/domain": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/axc-verification/archunit-tests": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.{ts}"]
+		},
+		"packages/axc-verification/acceptance-api": {
+			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/index.ts"],
+			"project": ["src/**/*.ts"],
+			"ignoreBinaries": ["report"]
+		},
+		"packages/cellix/*": {
+			"project": ["src/**/*.ts"]
+		}
+	},
+	"ignoreWorkspaces": [],
+	"ignore": [
+		"**/dist/**",
+		"**/coverage/**",
+		"**/__tests__/**",
+		"**/*.test.ts",
+		"**/*.spec.ts",
+		"**/.turbo/**",
+		".agents/**",
+		".github/**",
+		"portless.config.cjs",
+		"**/reports/**",
+		"target/**"
+	],
+	"ignoreDependencies": [
+		"@types/*",
+		"@serenity-js/*",
+		"@cucumber/*"
+	],
+	"ignoreBinaries": ["func", "snyk", "portless", "npx"]
+}

@@ -1,0 +1,38 @@
+node_modules
+.DS_Store
+**/coverage
+# .gitignore template - https://github.com/github/gitignore/blob/main/Node.gitignore
+lcov-report
+__*
+local.settings.json
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Turborepo
+.turbo
+
+# Generated build artifacts
+dist/
+build/
+deploy/
+target/
+reports/
+
+# SonarScanner
+.scannerwork
+
+# Rolldown-generated bundler manifests
+**/*.generated.ts
+
+# Agent runtime artifacts (per-session working state)
+.agents-work/
+
+# Build-time evidence artifacts (generated)
+build-artifacts/
+
+# Snyk
+.github/instructions/snyk_rules.instructions.md
+
+# pnpm
+.pnpm-debug.log*

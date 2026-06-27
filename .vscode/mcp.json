@@ -1,0 +1,18 @@
+{
+  "servers": {
+    "e18e": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@e18e/mcp"],
+      "env": {}
+    },
+    "mongodb": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mongodb-mcp-server"],
+      "env": {
+        "MONGODB_URI": "mongodb://localhost:27017"
+      }
+    }
+  }
+}
