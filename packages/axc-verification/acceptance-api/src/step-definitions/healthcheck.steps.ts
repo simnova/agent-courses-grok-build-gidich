@@ -5,7 +5,7 @@
  */
 import { Given, When, Then } from '@cucumber/cucumber';
 import { Ensure, equals, includes } from '@serenity-js/assertions';
-import { actorInTheSpotlight } from '@serenity-js/core';
+import { actorCalled } from '@serenity-js/core';
 import { honoApp } from '@apps/api'; // real wiring of healthcheck
 
 let lastResponse: Response;
@@ -21,29 +21,19 @@ When('I request the healthcheck endpoint', async function () {
 });
 
 Then('the response status should be 200', async function () {
-	await actorInTheSpotlight().attemptsTo(
-		Ensure.that(lastResponse.status, equals(200))
-	);
+	await actorCalled('Tess').attemptsTo(Ensure.that(lastResponse.status, equals(200)));
 });
 
 Then('the response should indicate service is "ok"', async function () {
-	await actorInTheSpotlight().attemptsTo(
-		Ensure.that(lastBody.status, equals('ok'))
-	);
+	await actorCalled('Tess').attemptsTo(Ensure.that(lastBody.status, equals('ok')));
 });
 
 Then('the response should include a recent timestamp', async function () {
-	await actorInTheSpotlight().attemptsTo(
-		Ensure.that(typeof lastBody.timestamp, equals('string'))
-	);
+	await actorCalled('Tess').attemptsTo(Ensure.that(typeof lastBody.timestamp, equals('string')));
 	// basic recency: contains dashes as in ISO
-	await actorInTheSpotlight().attemptsTo(
-		Ensure.that(lastBody.timestamp, includes('-'))
-	);
+	await actorCalled('Tess').attemptsTo(Ensure.that(lastBody.timestamp, includes('-')));
 });
 
 Then('the response should identify service {string}', async function (serviceName: string) {
-	await actorInTheSpotlight().attemptsTo(
-		Ensure.that(lastBody.service, equals(serviceName))
-	);
+	await actorCalled('Tess').attemptsTo(Ensure.that(lastBody.service, equals(serviceName)));
 });

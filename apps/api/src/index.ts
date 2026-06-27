@@ -1,7 +1,7 @@
 /**
  * @apps/api entrypoint.
  * Wires Hono + Azure Functions adapter for the agentCourses healthcheck.
- * 
+ *
  * The healthcheck logic is implemented in the @axc/axc package (pure units)
  * so that:
  *  - archunit can validate layering (rest over domain)
@@ -25,7 +25,7 @@ app.get('/', (c) =>
 		code: 'axc',
 		health: '/health',
 		description: 'Dark software factory API scaffold',
-	})
+	}),
 );
 
 // Mount the real healthcheck from axc package

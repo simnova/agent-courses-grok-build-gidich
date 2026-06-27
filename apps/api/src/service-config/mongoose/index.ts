@@ -1,7 +1,7 @@
 /**
  * Minimal mongoose memory wiring for local dev / acceptance in worktrees.
  * Uses mongodb-memory-server-core to avoid postinstall hooks.
- * 
+ *
  * Future expansion: real cluster uri selection based on env + WORKTREE_NAME.
  */
 import mongoose from 'mongoose';

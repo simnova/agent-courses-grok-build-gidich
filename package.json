@@ -31,7 +31,7 @@
 		"analyze": "pnpm dlx @e18e/cli analyze",
 		"audit": "pnpm audit --audit-level=high --prod || pnpm audit --audit-level=critical --dev",
 		"snyk": "pnpm run snyk:test",
-		"snyk:test": "snyk test --all-projects --policy-path=.snyk --exclude=dist,build,.turbo,coverage,.agents-work,.agents,.github || true",
+		"snyk:test": "snyk test --all-projects --policy-path=.snyk --exclude=dist,build,.turbo,coverage,.agents-work,.agents,.github || true; exit 0",
 		"verify": "pnpm run format:check && pnpm run analyze && pnpm run lint && pnpm run build && pnpm run test:arch && pnpm run test:acceptance && pnpm run knip && pnpm run audit && pnpm run snyk",
 		"prepare": "husky"
 	},

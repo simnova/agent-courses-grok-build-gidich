@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc --build || echo 'serenity may use ts directly'",
-		"test:acceptance": "cucumber-js",
+		"test:acceptance": "cucumber-js --config cucumber.js src/features/**/*.feature --require src/world.ts --require 'src/step-definitions/**/*.ts' --require-module tsx",
 		"test": "cucumber-js",
 		"clean": "rimraf target reports dist",
 		"lint": "biome lint || echo 'lint may need src'",

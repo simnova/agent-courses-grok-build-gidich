@@ -20,7 +20,8 @@
 		"format:check": "biome format ."
 	},
 	"dependencies": {
-		"hono": "catalog:"
+		"hono": "catalog:",
+		"mongoose": "catalog:"
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",

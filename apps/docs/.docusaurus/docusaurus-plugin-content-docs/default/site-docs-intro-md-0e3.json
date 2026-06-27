@@ -1,0 +1,16 @@
+{
+  "id": "intro",
+  "title": "agentCourses",
+  "description": "Welcome to the agentCourses (axc) documentation.",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/agentCourses/agentCourses/tree/main/apps/docs/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar"
+}

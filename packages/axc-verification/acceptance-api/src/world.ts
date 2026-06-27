@@ -1,39 +1,18 @@
 /**
- * Serenity/JS World for agentCourses acceptance.
- * Configures actors that can directly call the shipped API code (honoApp.request)
- * so that BDD validates the real implementation, including under WORKTREE_NAME.
+ * Serenity/JS World (minimal for agentCourses healthcheck BDD).
+ * The step definitions import honoApp directly; this provides basic cast if needed.
  */
-import { Actor, Cast, engage } from '@serenity-js/core';
-import { CallAnApi } from '@serenity-js/rest';
-import { honoApp } from '@apps/api'; // the shipped hono instance
-
-// Custom ability to call the hono app directly via its .request (fetch-like)
-export class CallHonoApp {
-	static using(app: any = honoApp) {
-		return new CallHonoApp(app);
-	}
-	constructor(public readonly app: any) {}
-
-	// Proxy to hono request: app.request(path, init)
-	async request(path: string, init?: RequestInit) {
-		return this.app.request(path, init);
-	}
-}
+import { Cast, engage } from '@serenity-js/core';
+import { honoApp } from '@apps/api';
 
 export class Actors implements Cast {
-	prepare(actor: Actor): Actor {
-		return actor.whoCan(
-			// REST ability using hono direct (avoids real http server for isolation)
-			CallAnApi.using({
-				baseURL: '', // relative
-				// custom adapter? For simplicity use custom ability too
-			}),
-			CallHonoApp.using(honoApp)
-		);
+	prepare(actor: any): any {
+		return actor;
 	}
 }
 
 export const actors = new Actors();
-
-// Auto engage for cucumber/serenity
 engage(actors);
+
+// Re-export hono for convenience in steps
+export { honoApp };

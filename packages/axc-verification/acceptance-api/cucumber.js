@@ -3,16 +3,9 @@
 export default {
 	default: {
 		paths: ['src/features/**/*.feature'],
-		require: [
-			'src/step-definitions/**/*.steps.ts',
-			'src/world.ts',
-		],
+		require: ['src/step-definitions/**/*.steps.ts', 'src/world.ts'],
 		requireModule: ['tsx'],
-		format: [
-			'@serenity-js/cucumber',
-			'progress-bar',
-			'rerun:@rerun.txt',
-		],
+		format: ['@serenity-js/cucumber', 'progress-bar', 'rerun:@rerun.txt'],
 		formatOptions: {
 			'@serenity-js/cucumber': {
 				theme: 'dark',

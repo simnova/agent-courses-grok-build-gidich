@@ -8,4 +8,4 @@ export interface DomainEvent {
 	readonly eventType: string;
 }
 
-export * from './healthcheck.js';  // if added
+// health primitives live in @axc/axc/domain for now (scaffold minimal)

@@ -10,7 +10,7 @@ catalog:
   # Core runtime / infra (Node 24 baseline)
   '@types/node': ^24.13.2
   hono: ^4.7.10
-  '@marplex/hono-azurefunc-adapter': ^1.0.2
+  '@marplex/hono-azurefunc-adapter': ^1.0.1
   mongoose: ^8.16.0
   mongodb-memory-server-core: ^10.1.4
   mongodb: ^6.18.0
@@ -45,6 +45,9 @@ catalog:
 # Audit ignores if any unavoidable (documented); start empty
 auditConfig:
   ignoreGhsas: []
+allowBuilds:
+  core-js: set this to true or false
+  core-js-pure: set this to true or false
 
 # Use workspace:* and catalog: for all inter-package / versioned deps.
 # pnpm version locked in root package.json packageManager field.
