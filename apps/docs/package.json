@@ -5,16 +5,16 @@
 	"scripts": {
 		"docusaurus": "docusaurus",
 		"start": "docusaurus start",
-		"build": "mkdir -p build && echo '<!doctype html><title>agentCourses docs (scaffold)</title><p>Healthcheck scaffold only. See root readme for architecture and gates.</p>' > build/index.html",
+		"build": "node -e \"const fs=require('fs');fs.mkdirSync('build',{recursive:true});fs.writeFileSync('build/index.html','<!doctype html><title>agentCourses docs scaffold</title><p>See root readme. Docusaurus build skipped due to env dep conflict (non-goal for healthcheck).');console.log('docs build produced placeholder')\"",
 		"swizzle": "docusaurus swizzle",
 		"deploy": "docusaurus deploy",
 		"clear": "docusaurus clear",
 		"serve": "docusaurus serve",
 		"write-translations": "docusaurus write-translations",
 		"write-heading-ids": "docusaurus write-heading-ids",
-		"lint": "echo 'docs lint skipped in initial scaffold'",
-		"format": "echo 'docs format skipped'",
-		"format:check": "echo 'docs format:check skipped'",
+		"lint": "biome lint src docusaurus.config.ts sidebars.ts",
+		"format": "biome format --write src docusaurus.config.ts sidebars.ts",
+		"format:check": "biome format src docusaurus.config.ts sidebars.ts",
 		"clean": "docusaurus clear || true"
 	},
 	"dependencies": {
@@ -23,8 +23,8 @@
 		"@mdx-js/react": "^3.0.0",
 		"clsx": "^2.0.0",
 		"prism-react-renderer": "^2.3.0",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
 		"@docusaurus/module-type-aliases": "3.7.0",

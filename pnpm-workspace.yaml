@@ -42,8 +42,7 @@ catalog:
 auditConfig:
   ignoreGhsas: []
 allowBuilds: {}
-onlyBuiltDependencies: []
-# Strict supply-chain: zero approved build scripts (onlyBuiltDependencies + allowBuilds empty).
+# Strict supply-chain: zero approved build scripts (onlyBuiltDependencies in .npmrc + allowBuilds empty).
 # Installs use --ignore-scripts where possible. Document+justify exceptions.
 # See https://pnpm.io/settings and pnpm approve-builds. Default expectation: zero.
 

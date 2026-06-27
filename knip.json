@@ -2,8 +2,8 @@
 	"$schema": "https://unpkg.com/knip@5/schema.json",
 	"workspaces": {
 		".": {
-			"entry": ["turbo.json", "biome.json"],
-			"project": ["*.ts", "*.js", "scripts/**/*.ts"]
+			"entry": ["portless.config.cjs"],
+			"project": ["*.js"]
 		},
 		"apps/api": {
 			"entry": ["src/index.ts", "src/**/*.ts", "rolldown.config.ts"],
@@ -11,8 +11,8 @@
 			"ignoreDependencies": []
 		},
 		"apps/docs": {
-			"entry": ["**/*.{ts,tsx,js,jsx}"],
-			"project": ["**/*.{ts,tsx,js,jsx}"]
+			"entry": ["src/pages/index.tsx", "docusaurus.config.ts", "sidebars.ts"],
+			"project": ["src/**/*.{ts,tsx}", "*.ts", "*.js"]
 		},
 		"packages/axc": {
 			"entry": ["src/index.ts"],
@@ -23,11 +23,11 @@
 			"project": ["src/**/*.ts"]
 		},
 		"packages/axc-verification/archunit-tests": {
-			"entry": ["src/index.ts"],
-			"project": ["src/**/*.{ts}"]
+			"entry": ["src/index.ts", "src/architecture.test.ts"],
+			"project": ["src/**/*.ts"]
 		},
 		"packages/axc-verification/acceptance-api": {
-			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/index.ts"],
+			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/healthcheck.steps.ts"],
 			"project": ["src/**/*.ts"],
 			"ignoreBinaries": []
 		},
@@ -35,7 +35,7 @@
 			"project": ["src/**/*.ts"]
 		}
 	},
-	"ignoreWorkspaces": [],
+	"ignoreWorkspaces": ["packages/cellix/config-typescript"],
 	"ignore": [
 		"**/dist/**",
 		"**/coverage/**",

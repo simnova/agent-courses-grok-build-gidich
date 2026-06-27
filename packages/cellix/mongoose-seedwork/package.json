@@ -6,11 +6,11 @@
 	"description": "Minimal mongoose seedwork reimplemented for axc (inspired by cellix patterns; not full port). Provides base entity/aggregate stubs.",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc --build || echo 'no src yet'",
+		"build": "tsc --build",
 		"clean": "rimraf dist",
-		"lint": "echo 'seedwork lint skipped'",
-		"format": "echo 'seedwork format skipped'",
-		"format:check": "echo 'seedwork format:check skipped'"
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format ."
 	},
 	"peerDependencies": {
 		"mongoose": "catalog:"

@@ -14,7 +14,8 @@
 			"!**/.turbo",
 			"!**/*.tsbuildinfo",
 			"!**/reports",
-			"!**/.agents-work"
+			"!**/.agents-work",
+			"!**/.docusaurus"
 		]
 	},
 	"formatter": {
@@ -117,7 +118,8 @@
 			"!**/*.d.ts",
 			"!**/package.json",
 			"!**/coverage/**",
-			"!**/.turbo/**"
+			"!**/.turbo/**",
+			"!**/.docusaurus/**"
 		]
 	},
 	"javascript": { "formatter": { "quoteStyle": "single" }, "globals": [] },
