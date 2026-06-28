@@ -54,9 +54,6 @@ catalogs:
     lint-staged:
       specifier: ^15.5.2
       version: 15.5.2
-    mongodb:
-      specifier: ^6.18.0
-      version: 6.21.0
     mongodb-memory-server-core:
       specifier: ^10.1.4
       version: 10.4.3
@@ -128,9 +125,6 @@ importers:
       '@axc/axc':
         specifier: workspace:*
         version: link:../../packages/axc
-      '@axc/domain':
-        specifier: workspace:*
-        version: link:../../packages/domain
       '@azure/functions':
         specifier: 'catalog:'
         version: 4.16.1
@@ -140,12 +134,6 @@ importers:
       hono:
         specifier: 'catalog:'
         version: 4.12.27
-      mongodb:
-        specifier: 'catalog:'
-        version: 6.21.0
-      mongoose:
-        specifier: 'catalog:'
-        version: 8.24.1(supports-color@8.1.1)
     devDependencies:
       '@types/node':
         specifier: 'catalog:'

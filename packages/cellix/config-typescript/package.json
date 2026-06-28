@@ -10,8 +10,8 @@
 	],
 	"scripts": {
 		"build": "mkdir -p dist && touch dist/.gitkeep",
-		"lint": "biome lint .",
-		"format": "biome format --write .",
-		"format:check": "biome format ."
+		"lint": "biome lint package.json tsconfig.base.json",
+		"format": "biome format --write package.json tsconfig.base.json",
+		"format:check": "biome format package.json tsconfig.base.json"
 	}
 }

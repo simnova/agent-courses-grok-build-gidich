@@ -13,7 +13,7 @@ catalog:
   '@marplex/hono-azurefunc-adapter': ^1.0.1
   mongoose: ^8.16.0
   mongodb-memory-server-core: ^10.1.4
-  mongodb: ^6.18.0
+  # mongodb removed from direct catalog use (transitive via mongoose/mongodb-memory); keep if needed later
   typescript: 6.0.3
   tsx: ^4.21.0
 

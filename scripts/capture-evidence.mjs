@@ -64,11 +64,14 @@ runAndCapture(
 	'ls -R packages/axc-verification/acceptance-api/target/reports || echo "NO REPORTS DIR"',
 );
 
-// 5. worktree sim
-overall |= runAndCapture('worktree-api-build', 'WORKTREE_NAME=test-agent pnpm --filter @apps/api run build');
+// 5. worktree sim — plain prefix + inner echo of $WORKTREE_NAME so output trace proves var reached subprocess
+overall |= runAndCapture(
+	'worktree-api-build',
+	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; pnpm --filter @apps/api run build\'',
+);
 overall |= runAndCapture(
 	'worktree-acceptance',
-	'WORKTREE_NAME=test-agent pnpm --filter @axc-verification/acceptance-api run test:acceptance',
+	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; pnpm --filter @axc-verification/acceptance-api run test:acceptance\'',
 );
 
 // 6. direct healthcheck (tsx to import real src shipped logic directly per plan step 6)

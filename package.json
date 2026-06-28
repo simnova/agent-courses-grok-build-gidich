@@ -27,7 +27,7 @@
 		"test:arch": "turbo run test:arch",
 		"test:acceptance": "turbo run test:acceptance",
 		"test:unit": "turbo run test:unit",
-		"knip": "knip --no-exit-code",
+		"knip": "pnpm exec knip",
 		"analyze": "pnpm dlx @e18e/cli analyze --log-level error",
 		"audit": "node scripts/gates/audit.mjs",
 		"snyk": "node scripts/gates/snyk.mjs",

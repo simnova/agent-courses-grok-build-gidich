@@ -1,44 +1,22 @@
 /**
- * Pure, importable healthcheck logic for agentCourses "dark software factory".
- * This is the shipped implementation exercised by:
- * - unit tests
- * - archunit architecture tests
- * - Serenity BDD steps (directly, no server)
- * - worktree-isolated acceptance runs
+ * Hono REST adapter for healthcheck.
+ * Imports the pure implementation from domain/ (source of truth) to enforce arch layering:
+ * rest depends on domain; domain does not depend on rest.
+ * Re-exports createHealthResponse for consumers (BDD, direct tests, archunit).
  *
- * Extension points:
- * - TODO: add experimentId, runId, modelId, harnessVersion metrics to details
- * - TODO: integrate real dependency health (mongoose ping, queue depth)
- * - TODO: return degraded status on partial failures for observability
+ * Extension points documented in domain/healthcheck.ts
  */
-export interface HealthResponse {
-	status: 'ok' | 'degraded';
-	timestamp: string;
-	service: string;
-	version: string;
-	details?: Record<string, unknown>;
-}
 
-export const DEFAULT_SERVICE = 'axc-api';
+import { Hono } from 'hono';
+import { createHealthResponse } from '../domain/healthcheck.js';
 
-export function createHealthResponse(overrides?: Partial<HealthResponse>): HealthResponse {
-	const now = new Date().toISOString();
-	return {
-		status: 'ok',
-		timestamp: now,
-		service: DEFAULT_SERVICE,
-		version: process.env.AXC_VERSION || process.env.npm_package_version || '0.1.0',
-		...(overrides?.details ? { details: overrides.details } : {}),
-		...overrides,
-	};
-}
+export type { HealthResponse } from '../domain/healthcheck.js';
+export { createHealthResponse } from '../domain/healthcheck.js';
 
 /**
  * Lightweight hono route fragment for health.
  * Import and use: app.route('/health', healthRouter)
  */
-import { Hono } from 'hono';
-
 export const healthRouter = new Hono();
 
 healthRouter.get('/', (c) => {

@@ -2,63 +2,48 @@
 	"$schema": "https://unpkg.com/knip@5/schema.json",
 	"workspaces": {
 		".": {
-			"entry": ["portless.config.cjs"],
-			"project": ["*.js"]
+			"entry": ["portless.config.cjs", "scripts/capture-evidence.mjs", "scripts/gates/*.mjs", "scripts/verify.mjs"]
 		},
 		"apps/api": {
-			"entry": ["src/index.ts"],
 			"project": ["src/**/*.ts", "rolldown.config.ts", "host.json"],
 			"ignore": ["rolldown.config.ts", "src/service-config/mongoose/index.ts"],
-			"ignoreDependencies": [
-				"@vitest/coverage-istanbul",
-				"archunit",
-				"@axc/domain",
-				"mongodb",
-				"mongoose",
-				"mongodb-memory-server-core"
-			]
+			"ignoreDependencies": ["@vitest/coverage-istanbul", "archunit", "mongodb-memory-server-core"]
 		},
 		"apps/docs": {
-			"entry": ["src/pages/index.tsx", "docusaurus.config.ts", "sidebars.ts"],
-			"project": ["src/**/*.{ts,tsx}", "docusaurus.config.ts", "sidebars.ts"],
+			"project": ["src/**/*.{ts,tsx}"],
 			"ignoreDependencies": ["clsx", "@docusaurus/plugin-content-docs"]
 		},
 		"packages/axc": {
-			"entry": ["src/index.ts"],
-			"project": ["src/index.ts", "src/rest/**/*.ts", "src/domain/**/*.ts"],
+			"project": ["src/**/*.ts"],
+			"ignore": ["src/persistence/index.ts", "src/service-mongoose/index.ts", "src/application-services/index.ts"],
 			"ignoreDependencies": ["mongoose"]
 		},
 		"packages/domain": {
-			"entry": ["src/index.ts"],
-			"project": ["src/index.ts"]
+			"project": ["src/**/*.ts"]
 		},
 		"packages/axc-verification/archunit-tests": {
-			"entry": ["src/index.ts"],
-			"project": ["src/index.ts", "src/architecture.test.ts"]
+			"project": ["src/**/*.ts"]
 		},
 		"packages/axc-verification/acceptance-api": {
 			"entry": ["src/world.ts", "src/step-definitions/healthcheck.steps.ts"],
 			"project": ["src/**/*.ts"],
 			"ignoreBinaries": [],
-			"ignoreDependencies": ["@axc/axc", "hono"]
+			"ignoreDependencies": [
+				"@serenity-js/console-reporter",
+				"@serenity-js/cucumber",
+				"@serenity-js/serenity-bdd",
+				"hono",
+				"@axc/axc"
+			]
 		},
 		"packages/cellix/*": {
 			"project": ["src/**/*.ts"]
+		},
+		"packages/cellix/config-typescript": {
+			"project": ["tsconfig.base.json", "package.json"]
 		}
 	},
-	"ignoreWorkspaces": ["packages/cellix/config-typescript"],
-	"ignore": ["**/.turbo/**", ".agents/**", ".github/**", "portless.config.cjs", "target/**"],
-	"ignoreDependencies": [
-		"@types/*",
-		"@serenity-js/*",
-		"@cucumber/*",
-		"@vitest/coverage-istanbul",
-		"archunit",
-		"lint-staged",
-		"rolldown",
-		"vitest",
-		"tsx",
-		"snyk"
-	],
-	"ignoreBinaries": ["func", "snyk"]
+	"ignore": [],
+	"ignoreDependencies": ["lint-staged", "rolldown", "tsx", "snyk", "@vitest/coverage-istanbul", "vitest"],
+	"ignoreBinaries": []
 }

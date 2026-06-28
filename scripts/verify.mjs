@@ -52,22 +52,22 @@ const allSteps = [
 		name: 'format:check',
 		cmd: 'pnpm exec biome format "apps/api" "packages/axc" "packages/domain" "packages/axc-verification" "packages/cellix/mongoose-seedwork" "apps/docs/src" "apps/docs/docusaurus.config.ts" "apps/docs/sidebars.ts"',
 	},
-	{ name: 'analyze', cmd: 'pnpm run analyze' },
+	{ name: 'analyze', cmd: 'node scripts/gates/e18e.mjs' },
 	{
 		name: 'build',
 		cmd: 'pnpm exec turbo run build --filter @apps/api --filter @axc/axc --filter @axc/domain --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
 	},
 	{
 		name: 'test:arch',
-		cmd: 'pnpm exec turbo run test:arch --filter @apps/api --filter @axc/axc --filter @axc/domain --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
+		cmd: 'pnpm exec turbo run test:arch --filter @axc-verification/archunit-tests',
 	},
 	{
 		name: 'test:acceptance',
 		cmd: 'pnpm exec turbo run test:acceptance --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
 	},
-	{ name: 'knip', cmd: 'pnpm run knip' },
+	{ name: 'knip', cmd: 'pnpm exec knip' },
 	{ name: 'audit', cmd: 'pnpm run audit' },
-	{ name: 'snyk', cmd: 'pnpm run snyk' },
+	{ name: 'snyk', cmd: 'node scripts/gates/snyk.mjs' },
 ];
 
 if (onlyStep) {
