@@ -1,6 +1,11 @@
 {
 	"extends": ["//"],
 	"tasks": {
-		"test:acceptance": { "outputs": ["target/**", "reports/**"], "cache": false }
+		"test:acceptance": { "outputs": ["target/**", "reports/**"], "cache": false },
+		"test:acceptance:report": {
+			"dependsOn": ["test:acceptance"],
+			"outputs": ["target/**", "reports/**"],
+			"cache": false
+		}
 	}
 }

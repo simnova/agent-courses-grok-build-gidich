@@ -5,16 +5,18 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc --build",
-		"test:acceptance": "cucumber-js --config cucumber.js src/features/**/*.feature --require src/world.ts --require 'src/step-definitions/**/*.ts' --require-module tsx --format json:target/reports/cucumber.json",
+		"test:acceptance": "cucumber-js --config cucumber.js src/features/**/*.feature --require src/step-definitions/**/*.steps.ts --require src/world.ts --require-module tsx --format @serenity-js/cucumber",
 		"test": "cucumber-js",
+		"report": "serenity-bdd run --source target/site/serenity --destination target/site/serenity",
+		"test:acceptance:report": "pnpm run test:acceptance && pnpm run report",
 		"clean": "rimraf target reports dist",
 		"lint": "biome lint",
 		"format": "biome format --write",
 		"format:check": "biome format ."
 	},
 	"dependencies": {
-		"@axc/axc": "workspace:*",
 		"@apps/api": "workspace:*",
+		"@axc/axc": "workspace:*",
 		"@cucumber/cucumber": "catalog:",
 		"@serenity-js/assertions": "catalog:",
 		"@serenity-js/console-reporter": "catalog:",
@@ -26,7 +28,7 @@
 	"devDependencies": {
 		"@types/node": "catalog:",
 		"rimraf": "^6.0.1",
-		"typescript": "catalog:",
-		"tsx": "catalog:"
+		"tsx": "catalog:",
+		"typescript": "catalog:"
 	}
 }

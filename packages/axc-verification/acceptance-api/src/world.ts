@@ -4,7 +4,17 @@
  */
 
 import { honoApp } from '@apps/api';
-import { type Cast, engage } from '@serenity-js/core';
+import { ConsoleReporter } from '@serenity-js/console-reporter';
+import { ArtifactArchiver, type Cast, configure, engage } from '@serenity-js/core';
+import { SerenityBDDReporter } from '@serenity-js/serenity-bdd';
+
+configure({
+	crew: [
+		ConsoleReporter.withDefaultColourSupport(),
+		ArtifactArchiver.fromJSON({ outputDirectory: 'target/site/serenity' }),
+		SerenityBDDReporter.fromJSON({ specDirectory: 'src/features' }),
+	],
+});
 
 export class Actors implements Cast {
 	prepare(actor: any): any {

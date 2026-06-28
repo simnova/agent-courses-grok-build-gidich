@@ -26,6 +26,7 @@
 		"test": "turbo run test",
 		"test:arch": "turbo run test:arch",
 		"test:acceptance": "turbo run test:acceptance",
+		"test:acceptance:report": "turbo run test:acceptance:report",
 		"test:unit": "turbo run test:unit",
 		"knip": "pnpm exec knip",
 		"analyze": "pnpm dlx @e18e/cli analyze --log-level error",
