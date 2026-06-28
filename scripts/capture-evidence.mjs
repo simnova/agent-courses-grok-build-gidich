@@ -58,7 +58,7 @@ overall |= runAndCapture('verify-1', 'node scripts/verify.mjs');
 overall |= runAndCapture('verify-2', 'node scripts/verify.mjs');
 
 // 4. serenity
-overall |= runAndCapture('serenity', 'pnpm --filter @axc-verification/acceptance-api run test:acceptance');
+overall |= runAndCapture('serenity', 'turbo run test:acceptance --filter=@axc-verification/acceptance-api');
 runAndCapture(
 	'serenity-reports-ls',
 	'ls -R packages/axc-verification/acceptance-api/target/reports || echo "NO REPORTS DIR"',
@@ -67,11 +67,11 @@ runAndCapture(
 // 5. worktree sim — plain prefix + inner echo of $WORKTREE_NAME so output trace proves var reached subprocess
 overall |= runAndCapture(
 	'worktree-api-build',
-	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; pnpm --filter @apps/api run build\'',
+	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; turbo run build --filter=@apps/api\'',
 );
 overall |= runAndCapture(
 	'worktree-acceptance',
-	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; pnpm --filter @axc-verification/acceptance-api run test:acceptance\'',
+	'WORKTREE_NAME=test-agent sh -c \'echo "WORKTREE_NAME=$WORKTREE_NAME"; turbo run test:acceptance --filter=@axc-verification/acceptance-api\'',
 );
 
 // 6. direct healthcheck (tsx to import real src shipped logic directly per plan step 6)

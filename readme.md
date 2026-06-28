@@ -136,11 +136,11 @@ Planned (not implemented):
 
 ## Scripts (key)
 
-- `pnpm build`
+- `pnpm build` (runs `turbo run build`)
 - `pnpm verify`
-- `pnpm test:acceptance --filter @axc-verification/acceptance-api`
-- `pnpm test:arch --filter @axc-verification/archunit-tests`
-- `WORKTREE_NAME=foo pnpm --filter @apps/api run build`
+- `turbo run test:acceptance --filter=@axc-verification/acceptance-api`
+- `turbo run test:arch --filter=@axc-verification/archunit-tests`
+- `WORKTREE_NAME=foo turbo run build --filter=@apps/api`
 
 ## License
 

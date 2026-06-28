@@ -49,4 +49,70 @@ try {
 	// This is expected and intentional for isolated worktree + test usage.
 }
 
+// Start local HTTP server when PORT is set (used by portless dev and direct start)
+// Use an IIFE so this module has no top-level await (important for test runners
+// and consumers that import honoApp synchronously).
+if (process.env.PORT) {
+	(async () => {
+		const { createServer } = await import('node:http');
+		const server = createServer(async (req, res) => {
+			try {
+				const host = req.headers.host || 'localhost';
+				const url = `http://${host}${req.url}`;
+				const method = req.method || 'GET';
+
+				const headers = new Headers();
+				for (const [key, value] of Object.entries(req.headers)) {
+					if (value) {
+						headers.set(key, Array.isArray(value) ? value.join(', ') : String(value));
+					}
+				}
+
+				let body: Uint8Array | undefined;
+				if (['POST', 'PUT', 'PATCH'].includes(method)) {
+					const chunks: Buffer[] = [];
+					for await (const chunk of req) {
+						chunks.push(Buffer.from(chunk));
+					}
+					body = Buffer.concat(chunks);
+				}
+
+				const request = new Request(url, { method, headers, body: body as BodyInit });
+				const response = await app.fetch(request);
+
+				res.statusCode = response.status;
+				response.headers.forEach((value, key) => {
+					res.setHeader(key, value);
+				});
+
+				if (response.body) {
+					const reader = response.body.getReader();
+					const pump = async () => {
+						const { done, value } = await reader.read();
+						if (done) {
+							res.end();
+							return;
+						}
+						res.write(Buffer.from(value));
+						pump();
+					};
+					pump();
+				} else {
+					res.end();
+				}
+			} catch (err) {
+				console.error('Server error:', err);
+				res.statusCode = 500;
+				res.end('Internal Server Error');
+			}
+		});
+
+		const port = Number(process.env.PORT);
+		const host = process.env.HOST || '127.0.0.1';
+		server.listen(port, host, () => {
+			console.log(`Server listening on http://${host}:${port}`);
+		});
+	})();
+}
+
 export default app;
