@@ -2,11 +2,11 @@
 	"$schema": "https://unpkg.com/knip@5/schema.json",
 	"workspaces": {
 		".": {
-			"entry": ["portless.config.cjs", "scripts/capture-evidence.mjs", "scripts/gates/*.mjs", "scripts/verify.mjs"]
+			"entry": ["portless.config.cjs", "scripts/capture-evidence.mjs", "scripts/gates/*.mjs"]
 		},
 		"apps/api": {
 			"project": ["src/**/*.ts", "rolldown.config.ts", "host.json"],
-			"ignore": ["rolldown.config.ts", "src/service-config/mongoose/index.ts"],
+			"ignore": ["rolldown.config.ts"],
 			"ignoreDependencies": ["@vitest/coverage-istanbul", "archunit", "mongodb-memory-server-core"]
 		},
 		"apps/docs": {
