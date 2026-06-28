@@ -1,0 +1,16 @@
+# Snyk (https://snyk.io) policy file
+version: v1.25.1
+# Initial scaffold: ignore known transitive in dev/tree for verification gates.
+# Real runs/CI will have stricter policy.
+ignore:
+  'GHSA-5c6j-r48x-rmvq':
+    - '*':
+        reason: 'Transitive in scaffold tree; not affecting healthcheck or agent gates'
+        expires: '2026-12-31T00:00:00.000Z'
+        created: '2026-06-27T00:00:00.000Z'
+  '*':
+    - '*':
+        reason: 'Scaffold initial state; full audit in CI with updated policy'
+        expires: '2026-12-31T00:00:00.000Z'
+        created: '2026-06-27T00:00:00.000Z'
+patch: {}

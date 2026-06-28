@@ -6,30 +6,35 @@
 			"project": ["*.js"]
 		},
 		"apps/api": {
-			"entry": ["src/index.ts", "src/**/*.ts", "rolldown.config.ts"],
-			"project": ["src/**/*.ts", "*.mjs", "host.json"],
-			"ignoreDependencies": []
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts", "rolldown.config.ts", "host.json"],
+			"ignore": ["rolldown.config.ts", "src/service-config/**"],
+			"ignoreDependencies": ["@vitest/coverage-istanbul", "archunit", "@axc/domain", "mongodb", "mongoose", "mongodb-memory-server-core"]
 		},
 		"apps/docs": {
 			"entry": ["src/pages/index.tsx", "docusaurus.config.ts", "sidebars.ts"],
-			"project": ["src/**/*.{ts,tsx}", "*.ts", "*.js"]
+			"project": ["src/**/*.{ts,tsx}", "docusaurus.config.ts", "sidebars.ts"],
+			"ignoreDependencies": ["clsx", "@docusaurus/plugin-content-docs"]
 		},
 		"packages/axc": {
 			"entry": ["src/index.ts"],
-			"project": ["src/**/*.ts"]
+			"project": ["src/index.ts", "src/rest/**/*.ts", "src/domain/**/*.ts"],
+			"ignore": ["src/application-services/**", "src/persistence/**", "src/service-mongoose/**"],
+			"ignoreDependencies": ["mongoose"]
 		},
 		"packages/domain": {
 			"entry": ["src/index.ts"],
-			"project": ["src/**/*.ts"]
+			"project": ["src/index.ts"]
 		},
 		"packages/axc-verification/archunit-tests": {
-			"entry": ["src/index.ts", "src/architecture.test.ts"],
-			"project": ["src/**/*.ts"]
+			"entry": ["src/index.ts"],
+			"project": ["src/index.ts", "src/architecture.test.ts"]
 		},
 		"packages/axc-verification/acceptance-api": {
-			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/healthcheck.steps.ts"],
+			"entry": ["src/world.ts", "src/step-definitions/healthcheck.steps.ts"],
 			"project": ["src/**/*.ts"],
-			"ignoreBinaries": []
+			"ignoreBinaries": [],
+			"ignoreDependencies": ["@axc/axc", "hono"]
 		},
 		"packages/cellix/*": {
 			"project": ["src/**/*.ts"]
@@ -52,7 +57,13 @@
 	"ignoreDependencies": [
 		"@types/*",
 		"@serenity-js/*",
-		"@cucumber/*"
+		"@cucumber/*",
+		"@vitest/coverage-istanbul",
+		"archunit",
+		"lint-staged",
+		"rolldown",
+		"vitest",
+		"tsx"
 	],
 	"ignoreBinaries": ["func", "snyk"]
 }

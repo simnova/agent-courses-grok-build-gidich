@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@axc/axc": "workspace:*",
 		"@axc/domain": "workspace:*",
+		"mongodb": "catalog:",
 		"@azure/functions": "catalog:",
 		"@marplex/hono-azurefunc-adapter": "catalog:",
 		"hono": "catalog:",
