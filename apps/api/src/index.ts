@@ -10,10 +10,11 @@
  *
  * Extension points documented in @axc/axc/rest/healthcheck.ts
  */
-import { Hono } from 'hono';
-import { azureHonoHandler } from '@marplex/hono-azurefunc-adapter';
-import { app as azureFunctionsApp } from '@azure/functions';
+
 import { healthRouter } from '@axc/axc/rest';
+import { app as azureFunctionsApp } from '@azure/functions';
+import { azureHonoHandler } from '@marplex/hono-azurefunc-adapter';
+import { Hono } from 'hono';
 
 // Root Hono app
 const app = new Hono();

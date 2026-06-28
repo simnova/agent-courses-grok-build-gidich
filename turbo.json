@@ -38,12 +38,28 @@
 		"test:arch": {
 			"description": "Runs architecture unit tests (archunit) for packages that define them",
 			"dependsOn": ["build", "^build"],
-			"inputs": ["$TURBO_DEFAULT$", "src/archunit-tests/**/*.test.ts", "src/**/*.arch.test.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"]
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"src/archunit-tests/**/*.test.ts",
+				"src/**/*.arch.test.ts",
+				"!coverage/**",
+				"!target/**",
+				"!dist/**",
+				"!build/**"
+			]
 		},
 		"test:acceptance": {
 			"description": "Runs Serenity BDD / Cucumber acceptance tests",
 			"dependsOn": ["build", "^build"],
-			"inputs": ["$TURBO_DEFAULT$", "**/*.feature", "src/**/*.steps.ts", "!coverage/**", "!target/**", "!dist/**", "!build/**"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"**/*.feature",
+				"src/**/*.steps.ts",
+				"!coverage/**",
+				"!target/**",
+				"!dist/**",
+				"!build/**"
+			],
 			"outputs": ["target/**", "reports/**"],
 			"cache": false
 		},

@@ -8,8 +8,15 @@
 		"apps/api": {
 			"entry": ["src/index.ts"],
 			"project": ["src/**/*.ts", "rolldown.config.ts", "host.json"],
-			"ignore": ["rolldown.config.ts", "src/service-config/**"],
-			"ignoreDependencies": ["@vitest/coverage-istanbul", "archunit", "@axc/domain", "mongodb", "mongoose", "mongodb-memory-server-core"]
+			"ignore": ["rolldown.config.ts", "src/service-config/mongoose/index.ts"],
+			"ignoreDependencies": [
+				"@vitest/coverage-istanbul",
+				"archunit",
+				"@axc/domain",
+				"mongodb",
+				"mongoose",
+				"mongodb-memory-server-core"
+			]
 		},
 		"apps/docs": {
 			"entry": ["src/pages/index.tsx", "docusaurus.config.ts", "sidebars.ts"],
@@ -19,7 +26,6 @@
 		"packages/axc": {
 			"entry": ["src/index.ts"],
 			"project": ["src/index.ts", "src/rest/**/*.ts", "src/domain/**/*.ts"],
-			"ignore": ["src/application-services/**", "src/persistence/**", "src/service-mongoose/**"],
 			"ignoreDependencies": ["mongoose"]
 		},
 		"packages/domain": {
@@ -41,19 +47,7 @@
 		}
 	},
 	"ignoreWorkspaces": ["packages/cellix/config-typescript"],
-	"ignore": [
-		"**/dist/**",
-		"**/coverage/**",
-		"**/__tests__/**",
-		"**/*.test.ts",
-		"**/*.spec.ts",
-		"**/.turbo/**",
-		".agents/**",
-		".github/**",
-		"portless.config.cjs",
-		"**/reports/**",
-		"target/**"
-	],
+	"ignore": ["**/.turbo/**", ".agents/**", ".github/**", "portless.config.cjs", "target/**"],
 	"ignoreDependencies": [
 		"@types/*",
 		"@serenity-js/*",

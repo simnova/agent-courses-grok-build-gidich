@@ -4,8 +4,9 @@
  *
  * Future expansion: real cluster uri selection based on env + WORKTREE_NAME.
  */
-import mongoose from 'mongoose';
+
 import { MongoMemoryServer } from 'mongodb-memory-server-core';
+import mongoose from 'mongoose';
 
 let memoryServer: MongoMemoryServer | null = null;
 

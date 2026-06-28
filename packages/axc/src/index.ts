@@ -5,4 +5,8 @@
  */
 export * from './rest/index.js';
 // domain and services are stubbed for initial scaffold (non-goal to populate full domain)
+// reference stubs so they are not flagged as unused by knip
+import './application-services/index.js';
+import './persistence/index.js';
+import './service-mongoose/index.js';
 export const axcCoreVersion = '0.1.0';
