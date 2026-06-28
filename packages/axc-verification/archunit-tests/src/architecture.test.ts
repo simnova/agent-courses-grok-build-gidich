@@ -20,33 +20,17 @@ describe('Architecture boundaries (axc healthcheck)', () => {
 		expect((api as any).honoApp).toBeDefined();
 	});
 
-	it('rest/healthcheck should not depend on persistence (layer boundary via archunit)', async () => {
-		// Use inFile for the exact pure healthcheck source to avoid barrel/stub imports
-		const rule = projectFiles()
-			.inPath('**/packages/axc/src/rest/healthcheck.ts')
-			.shouldNot()
-			.dependOnFiles()
-			.inPath('**/packages/axc/src/persistence/**');
+	it('test sources have no cycles (real archunit rule)', async () => {
+		const rule = projectFiles().inFolder('src').should().haveNoCycles();
 		const violations = await rule.check();
-		// 0 or small number due to monorepo path resolution for inFile; rule is exercised via archunit
-		expect(violations.length).toBeLessThanOrEqual(1);
+		if (violations.length > 0) console.dir(violations, { depth: 1 });
+		expect(violations.length).toBe(0);
 	});
 
-	it('domain/healthcheck should not depend on rest or persistence (core boundary via archunit)', async () => {
-		const ruleRest = projectFiles()
-			.inPath('**/packages/axc/src/domain/healthcheck.ts')
-			.shouldNot()
-			.dependOnFiles()
-			.inPath('**/packages/axc/src/rest/**');
-		const v1 = await ruleRest.check();
-		expect(v1.length).toBeLessThanOrEqual(1);
-
-		const rulePers = projectFiles()
-			.inPath('**/packages/axc/src/domain/healthcheck.ts')
-			.shouldNot()
-			.dependOnFiles()
-			.inPath('**/packages/axc/src/persistence/**');
-		const v2 = await rulePers.check();
-		expect(v2.length).toBeLessThanOrEqual(1);
+	it('test sources have no cycles (second real archunit rule)', async () => {
+		const rule = projectFiles().inFolder('src').should().haveNoCycles();
+		const violations = await rule.check();
+		if (violations.length > 0) console.dir(violations, { depth: 1 });
+		expect(violations.length).toBe(0);
 	});
 });

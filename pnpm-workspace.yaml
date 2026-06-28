@@ -38,9 +38,11 @@ catalog:
 
   # Azure compat note: host.json etc for azure functions v4
   '@azure/functions': ^4.11.0
-# Audit ignores if any unavoidable (documented); start empty
+# Audit ignores if any unavoidable (documented); start empty.
+# Known high in transitive dev tooling (docusaurus webpack chain) not affecting gate packages or shipped healthcheck code.
 auditConfig:
-  ignoreGhsas: []
+  ignoreGhsas:
+    - GHSA-5c6j-r48x-rmvq  # serialize-javascript RCE (transitive via apps/docs docusaurus only)
 allowBuilds: {}
 # Strict supply-chain: zero approved build scripts (onlyBuiltDependencies in .npmrc + allowBuilds empty).
 # Installs use --ignore-scripts where possible. Document+justify exceptions.

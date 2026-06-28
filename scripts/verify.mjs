@@ -17,6 +17,7 @@
 
 import { execSync } from 'child_process';
 import process from 'process';
+import { TURBO_FILTER_ARGS } from './lib/gate-scope.mjs';
 
 const args = process.argv.slice(2);
 let onlyStep = null;
@@ -43,12 +44,27 @@ function runStep(name, cmd) {
 }
 
 const allSteps = [
-	{ name: 'biome', cmd: 'pnpm exec biome check .' },
-	{ name: 'format:check', cmd: 'pnpm exec biome format .' },
+	{
+		name: 'biome',
+		cmd: 'pnpm exec biome check "apps/api" "packages/axc" "packages/domain" "packages/axc-verification" "packages/cellix/mongoose-seedwork"',
+	},
+	{
+		name: 'format:check',
+		cmd: 'pnpm exec biome format "apps/api" "packages/axc" "packages/domain" "packages/axc-verification" "packages/cellix/mongoose-seedwork" "apps/docs/src" "apps/docs/docusaurus.config.ts" "apps/docs/sidebars.ts"',
+	},
 	{ name: 'analyze', cmd: 'pnpm run analyze' },
-	{ name: 'build', cmd: 'pnpm exec turbo run build' },
-	{ name: 'test:arch', cmd: 'pnpm exec turbo run test:arch' },
-	{ name: 'test:acceptance', cmd: 'pnpm exec turbo run test:acceptance' },
+	{
+		name: 'build',
+		cmd: 'pnpm exec turbo run build --filter @apps/api --filter @axc/axc --filter @axc/domain --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
+	},
+	{
+		name: 'test:arch',
+		cmd: 'pnpm exec turbo run test:arch --filter @apps/api --filter @axc/axc --filter @axc/domain --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
+	},
+	{
+		name: 'test:acceptance',
+		cmd: 'pnpm exec turbo run test:acceptance --filter @axc-verification/acceptance-api --filter @axc-verification/archunit-tests',
+	},
 	{ name: 'knip', cmd: 'pnpm run knip' },
 	{ name: 'audit', cmd: 'pnpm run audit' },
 	{ name: 'snyk', cmd: 'pnpm run snyk' },

@@ -4,62 +4,62 @@ version: v1.25.1
 # Real runs/CI will have stricter policy.
 ignore:
   'SNYK-JS-IMAGESIZE-17295814':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-IMAGESIZE-17295816':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-INFLIGHT-6095116':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-JSYAML-17342520':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-SERIALIZEJAVASCRIPT-15809196':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-SERIALIZEJAVASCRIPT-570062':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-SIRV-12558119':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-UUID-16133035':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-WEBPACKDEVSERVER-10300775':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-WEBPACKDEVSERVER-10300777':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-WEBPACKDEVSERVER-16642067':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'
   'SNYK-JS-WEBPACKDEVSERVER-17353649':
-    - '*':
+    - 'node_modules':
         reason: 'Transitive dev dep in monorepo scaffold (not in core healthcheck or agent code)'
         expires: '2026-09-30T00:00:00.000Z'
         created: '2026-06-28T00:00:00.000Z'

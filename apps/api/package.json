@@ -10,7 +10,7 @@
 		"dev:worktree": "WORKTREE_NAME=${WORKTREE_NAME:-worktree} pnpm exec portless api.axc.${WORKTREE_NAME}.localhost --force tsx watch src/index.ts",
 		"start": "node --import tsx src/index.ts",
 		"test": "vitest run",
-		"test:arch": "echo 'arch tests centralized in @axc-verification/archunit-tests; api boundaries covered by rules'",
+		"test:arch": "vitest run --config vitest.arch.config.ts --passWithNoTests",
 		"test:unit": "vitest run",
 		"clean": "rimraf dist deploy",
 		"lint": "biome lint",

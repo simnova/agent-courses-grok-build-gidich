@@ -10,8 +10,8 @@
 	],
 	"scripts": {
 		"build": "mkdir -p dist && touch dist/.gitkeep",
-		"lint": "node --eval '\nconst {execSync} = require(\"child_process\");\ntry { execSync(\"biome lint .\", {stdio:\"pipe\"}); console.log(\"lint ok for config pkg\"); } catch(e) { console.log(\"lint (config-only pkg: no ts sources processed - expected)\"); }\n'",
-		"format": "node --eval '\nconst {execSync} = require(\"child_process\");\ntry { execSync(\"biome format .\", {stdio:\"pipe\"}); console.log(\"format ok for config pkg\"); } catch(e) { console.log(\"format (config-only pkg)\"); }\n'",
-		"format:check": "node --eval '\nconst {execSync} = require(\"child_process\");\ntry { execSync(\"biome format .\", {stdio:\"pipe\"}); console.log(\"format:check ok for config pkg\"); } catch(e) { console.log(\"format:check (config-only pkg: formatting would differ)\"); }\n'"
+		"lint": "biome lint .",
+		"format": "biome format --write .",
+		"format:check": "biome format ."
 	}
 }

@@ -57,7 +57,8 @@
 		"lint-staged",
 		"rolldown",
 		"vitest",
-		"tsx"
+		"tsx",
+		"snyk"
 	],
 	"ignoreBinaries": ["func", "snyk"]
 }
